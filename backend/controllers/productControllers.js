@@ -2,7 +2,7 @@ import catchAsyncErrors from '../Middlewares/catchAsyncErrors.js';
 import theProduct from '../Models/productModel.js'
 import APIfilters from '../utils/apiFilters.js';
 import { delete_file, upload_file } from '../utils/cloundinary.js';
-
+import mongoose from "mongoose";
 // to use these function we go to routes / product .js 
 // get all product ==> /api/v1/Products
 export const getProducts = catchAsyncErrors(async (req, res) => {
@@ -55,32 +55,27 @@ export const newProduct = async (req, res) => {
 
 // get a single product detail by its ide :
 export const getProductById = async (req, res) => {
+  const { id } = req.params;
 
-
-
-    const product = await theProduct.findById(req.params.id)
-
-    if (!product) {
-        return res.status(404).json({
-
-            error: "product with such id is not found !"
-
-
-        });
-    }
-
-
-
-
-    res.status(200).json({
-
-        product,
-
-
+  // Validate ObjectId format
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      error: "Invalid product ID format!",
     });
+  }
 
+  const product = await theProduct.findById(id);
+
+  if (!product) {
+    return res.status(404).json({
+      error: "Product with such ID is not found!",
+    });
+  }
+
+  res.status(200).json({
+    product,
+  });
 };
-
 
 
 export const updateProduct = catchAsyncErrors(async (req, res) => {

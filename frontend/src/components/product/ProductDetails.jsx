@@ -36,7 +36,7 @@ const ProductDetails = () => {
     if (isError) {
       toast.error(error?.data?.message);
     }
-  }, [isError]);
+  }, [isError,error?.data?.message]);
 
   const increaseQty = () => {
     const count = document.querySelector(".count");
@@ -66,11 +66,10 @@ const ProductDetails = () => {
   if (isLoading) return <Loader />;
 
 
-if(error && error?.status==404) {
-
-return <NotFound/>
-
-}
+  if (isLoading) return <Loader />;
+  if ((!product || Object.keys(product).length === 0) && !isLoading) {
+    return <NotFound />;
+  }
 
   return (
     <div className="row d-flex justify-content-around">
@@ -169,7 +168,7 @@ return <NotFound/>
         )}
 
 
-<ReviewsList productId={product._id}></ReviewsList>
+<ReviewsList productId={product?._id}></ReviewsList>
 
       </div>
     </div>
