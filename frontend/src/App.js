@@ -32,6 +32,7 @@ import ProcessOrder from "./components/admin/ProcessOrder";
 import UpdateUser from "./components/admin/UpdateUser";
 import ListUsers from "./components/admin/ListUsers";
 import ProductReviews from "./components/admin/ProductReviews";
+import NotFound from "./components/layout/NotFound";
 
 
 function App() {
@@ -208,6 +209,10 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+
+
+<Route path="*" element={<NotFound />} />
 
           </Routes>
         </div>

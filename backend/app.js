@@ -8,10 +8,10 @@ import { connectDatabase } from './config/dbConnect.js'
 import errorMiddleWare from './Middlewares/errors.js'
 
 
-import path from 'path'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
+import path from "path";
+// import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 
@@ -42,6 +42,9 @@ app.use("/api/v1/", productRoutes)
 
 
 
+
+
+
 app.use("/api/v1/", userRoutes)
 app.use("/api/v1/",orderRoutes)
 app.use("/api/v1/",paymentRoutes)
@@ -49,22 +52,14 @@ app.use("/api/v1/",paymentRoutes)
 app.use(errorMiddleWare);
 
 
-if (process.env.NODE_ENV==="PRODUCTION") {
-    /*app.use(express.static(path.join(__dirname,"../frontend/build")));
-    app.get('*',(req,res)=>{
-
-res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
-*/
-
-
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', '../frontend/build/index.html'));
-});
-
- 
-}
+if (process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+  
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+    });
+  }
+  
 
 // connecting to database 
 
