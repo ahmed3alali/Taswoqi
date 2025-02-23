@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "postinstall": "(cd frontend && npm install) && (cd backend && npm install)",
-    "build": "CI=false && (cd frontend && npm run build) && cp -r frontend/build . && cp -r backend .",
+    "build": "CI=false && (cd frontend && npm run build) && cp -r frontend/build backend",
     "start": "node ./backend/api/index.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon app.js",
     "prod": "NODE_ENV=PRODUCTION nodemon app.js",
