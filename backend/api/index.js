@@ -4,8 +4,8 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 const app = express()
 
-import { connectDatabase } from './config/dbConnect.js'
-import errorMiddleWare from './Middlewares/errors.js'
+import { connectDatabase } from '../config/dbConnect.js'
+import errorMiddleWare from '../Middlewares/errors.js'
 
 
 import path from "path";
