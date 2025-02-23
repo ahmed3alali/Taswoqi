@@ -38,10 +38,10 @@ connectDatabase();
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser())
 
-import productRoutes from "./routes/product.js"
-import userRoutes from "./routes/auth.js"
-import orderRoutes from "./routes/order.js"
-import paymentRoutes from "./routes/payment.js"
+import productRoutes from "../routes/product.js"
+import userRoutes from "../routes/auth.js"
+import orderRoutes from "../routes/order.js"
+import paymentRoutes from "../routes/payment.js"
 import { fileURLToPath } from 'url'
 app.use("/api/v1/", productRoutes)
 
